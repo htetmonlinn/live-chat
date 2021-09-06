@@ -23,6 +23,8 @@ export default {
              if(!response){
                  throw new Error("could not create new user");
              }
+             response.user.updateProfile({displayName:displayName.value})
+             console.log(response.user);
          }catch(err){
            error.value=err.message;
            console.log(error.value);
