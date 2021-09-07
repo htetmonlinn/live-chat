@@ -13,7 +13,6 @@ let createAccount=async(email,password,displayName)=>{
         return response;
     }catch(err){
       error.value=err.message;
-      console.log(error.value);
     }
    
 }

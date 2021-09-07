@@ -3,7 +3,9 @@
   <form @submit.prevent="signUp">
       <input type="text" placeholder="display name" v-model="displayName"> 
       <input type="text" placeholder="email" v-model="email">
-      <input type="text" placeholder="password" v-model="password"> <br>  
+      <input type="text" placeholder="password" v-model="password"> <br>
+      <div v-if="error" class="error">
+             {{error}}  </div>  
       <button>Sign Up</button>
   </form>
 </template>
@@ -20,9 +22,11 @@ export default {
         let {error,createAccount}=useSignup();
         let signUp=async()=>{
          let response=await createAccount(email.value,password.value,displayName.value)
-
+         if(response){
+             console.log(response.user);
+         }
         }
-        return{displayName,email,password,signUp}
+        return{displayName,email,password,signUp,error}
     }
 
 }
