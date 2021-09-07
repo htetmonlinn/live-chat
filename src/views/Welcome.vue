@@ -1,11 +1,11 @@
 <template>
 <div class="welcome container">
     <div v-if="showLoginForm">
-        <Login></Login>
+        <Login @enterChat="enterChat"></Login>
         <p>Not a member? <span @click="showLoginForm=!showLoginForm">create account</span></p>
     </div>
     <div v-else>
-        <Signup></Signup>
+        <Signup @enterChat="enterChat"></Signup>
         <p>Already member? <span @click="showLoginForm=!showLoginForm">Login Account</span></p>
     </div>
     
@@ -16,16 +16,20 @@
 import { ref } from '@vue/reactivity'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
+import {useRouter} from "vue-router"
 export default {
   components: {
     Login, Signup },
     setup(){
         let showLoginForm=ref(true);
+        let router=useRouter();
+        let enterChat=async()=>{
+           router.push({name:"Chatroom"});
+        }
 
 
 
-
-        return {showLoginForm}
+        return {showLoginForm,enterChat}
     }
 
 }
