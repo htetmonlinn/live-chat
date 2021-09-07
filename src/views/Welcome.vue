@@ -16,7 +16,7 @@
 import { ref } from '@vue/reactivity'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
-import {useRouter} from "vue-router"
+import {useRouter} from 'vue-router'
 export default {
   components: {
     Login, Signup },
