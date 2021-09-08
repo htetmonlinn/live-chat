@@ -1,9 +1,9 @@
 <template>
-  <nav>
+  <nav v-if="user">
       <div>
-          <p>Hi username</p>
-          <p class="email">Login as email</p>
-      </div>
+          <p>Hi {{user.displayName}}</p>
+          <p class="email">Login as {{user.email}}</p>
+      </div> <br>
       <button @click="logOut">Log Out</button>
   </nav>
 </template>
@@ -11,9 +11,12 @@
 <script>
 import { ref } from '@vue/reactivity'
 import {auth} from "../firebase/config"
+import getUsers from "../composables/getUsers"
 export default {
     setup(){
         let error=ref(null);
+        let {user}=getUsers();
+        
         let logOut=async()=>{
            try{
                let res=await auth.signOut();
@@ -23,7 +26,9 @@ export default {
              console.log(error.value);
            }
         }
-        return {logOut};
+            
+        
+        return {logOut,user};
     }
 
 }
